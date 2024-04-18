@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Display</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .chat-box {
+            border-bottom: 1px solid #eee;
+            padding: 10px;
+            margin-bottom: 10px;
+            display:inline-block;
+        }
+        .chat-box:last-child {
+            border-bottom: none;
+        }
+        .chat-box p {
+            margin: 5px 0;
+        }
+        .from, .to {
+            color: #888;
+        }
+        .message {
+            font-size: 16px;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>All Chats</h2>
+        <% for(let chat of chats) { %>
+            <div class="chat-box">
+                <p class="from">From: <%= chat.from %></p>
+                <p class="message"><%= chat.message %></p>
+                <p class="to">To: <%= chat.to %></p>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>
