@@ -1,0 +1,6 @@
+some mongodb command to see the collections-----------------
+test> use chatSystem
+switched to db chatSystem
+chatSystem> show collections
+chats
+chatSystem> db.chats.find()

@@ -3,11 +3,20 @@ const app=express();
 const path=require("path");
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs");
-//app.set(express.static(path.join(__dirname,"public"))) we need this when we use sepreate file for the css or javascript
+app.use(express.static(path.join(__dirname,'public')));
+const Chat = require("./models/chatModel.js");
+//setting up the multer for uploading files
+const multer=require('multer');
+const upload=multer({dest:'./uploads'});
+app.post('/uploadfile',upload.single('file'),()=>{
+    console.log(req.file,req.body);
+})
 
-const Chat = require("./models/chat.js")
 
 //-----------Mongoose setup---------------//
+//--------go to mongoogse documentation 
+//https://mongoosejs.com/docs/index.html 
+//Go to quick start of this link and then you will see the code for it....
 const mongoose=require("mongoose");
 mongoose.connect('mongodb://127.0.0.1:27017/chatSystem')
   .then(() => console.log('Connected!'));
@@ -19,10 +28,16 @@ app.listen(8080,()=>{
     console.log("server is listening on port 8080");
 })
 
+app.get("/",(req,res,next)=>{
+    console.log("root is working....");
+    next();
+});
+
 app.get("/",(req,res)=>{
-    res.send("root is working....");
+    res.render("login.ejs")
+});
+app.get('/signup',(req,res)=>{
+    res.render("signup.ejs")
 })
-app.get("/chats",async(req,res)=>{//this is a asyncrous function meaning we have to wait to get that Chat.find().
-    let chats=await Chat.find();
-    res.render("home.ejs",{chats});
-})
+
+

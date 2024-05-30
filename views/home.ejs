@@ -23,7 +23,7 @@
             border-bottom: 1px solid #eee;
             padding: 10px;
             margin-bottom: 10px;
-            display:inline-block;
+        
         }
         .chat-box:last-child {
             border-bottom: none;
@@ -51,5 +51,43 @@
             </div>
         <% } %>
     </div>
+    <!--NOTE 
+    In HTML, elements are generally categorized into two types based on their default display behavior: inline and block. These categories affect how elements are rendered on the page in relation to content flow, sizing, and layout.
+
+Inline Elements
+Inline elements do not start on a new line and only take up as much width as necessary. They are typically used for small chunks of the HTML inside a line of text or other content. Here are some common inline elements:
+
+<span>: Used to group inline-elements in a document.
+<a>: Defines a hyperlink, which is used to link from one page to another.
+<strong> and <b>: Used for strong emphasis and bold text, respectively.
+<em> and <i>: Used for emphasized text (typically styled as italic) and italic text, respectively.
+<img>: Embeds an image into the document. It is inline by default.
+<input>: Used to create interactive controls for web-based forms.
+<label>: Defines a label for an <input> element.
+<textarea>: Defines a multi-line text input control.
+Block Elements
+Block elements always start on a new line and take up the full width available (stretches out to the left and right as far as it can). They can hold other block elements and inline elements. Here are some common block elements:
+
+<div>: Used as a container for other HTML elements.
+<p>: Represents a paragraph.
+<h1>, <h2>, <h3>, <h4>, <h5>, <h6>: Represent six levels of section headings, <h1> being the highest and <h6> the lowest.
+<ol>, <ul>: Represent ordered (numbered) and unordered (bulleted) lists, respectively.
+<li>: Represents an item in a list.
+<table>: Defines a table.
+<header>, <footer>, <section>, <article>, <aside>: Structural elements used to define parts of a page or document.
+Key Differences in Behavior
+Content Flow: Block elements create a "block" on the page, forcing a new line before and after the element, whereas inline elements flow within text or other inline elements without causing line breaks.
+Width and Height: Block elements can have width and height set, which defines their size explicitly. Inline elements, however, only occupy as much width as their content and do not respect width and height properties.
+Margins and Padding: Block elements respect all margin and padding properties, including top and bottom. Inline elements respect left and right margin and padding, but top and bottom margins and paddings do not affect the layout of surrounding content.
+Switching Display Types
+With CSS, you can alter these default behaviors by changing the display property of an element. For example, you can set a <div> to display: inline; or a <span> to display: block; to change how they are rendered on the page. This flexibility allows developers to customize the layout beyond the basic document structure defined by HTML alone.
+
+
+
+
+
+
+-->
 </body>
 </html>
+
