@@ -1,0 +1,42 @@
+<% layout('./layouts/layout') %>
+<h1 class="text-center">Search Results</h1>
+<div class="search-results mt-4">
+    <h2>Results:</h2>
+    <% if (users && users.length > 0) { %>
+        <ul class="list-group">
+            <% users.forEach(user => { %>
+                <li class="list-group-item d-flex align-items-center" data-id="<%= user._id %>">
+                    <img src="<%= user.pic %>" alt="Profile Picture" class="rounded-circle" width="50" height="50">
+                    <div class="ml-3">
+                        <strong>Name:</strong> <%= user.name %> <br>
+                        <strong>Email:</strong> <%= user.email %>
+                    </div>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No users found.</p>
+    <% } %>
+</div>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userItems = document.querySelectorAll('.list-group-item');
+            userItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const userId = item.dataset.id;
+                    fetch(`/api/chats?id=${userId}`, {
+                        method: 'GET',
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            window.location.href = `/api/chats?id=${userId}`;
+                        } else {
+                            console.error('Error fetching chat:', response.statusText);
+                        }
+                    })
+                    .catch(error => console.error('Error fetching chat:', error));
+                });
+            });
+        });
+
+</script>

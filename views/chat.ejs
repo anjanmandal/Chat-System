@@ -1,0 +1,65 @@
+<% layout('./layouts/layout') %>
+
+<div class="container">
+  <h2>Your Chats</h2>
+  <div class="chats">
+    <% if (chat) { %>
+        <div class="chat-card" onclick="openChat('<%= chat._id %>')">
+          <img src="<%= chat.users.find(user => user._id.toString() !== currentUser._id.toString()).pic %>" 
+               alt="<%= chat.users.find(user => user._id.toString() !== currentUser._id.toString()).name %>">
+          <div class="chat-info">
+            <h4><%= chat.users.find(user => user._id.toString() !== currentUser._id.toString()).name %></h4>
+            <p><%= chat.latestMessage ? chat.latestMessage.content : "No messages yet" %></p>
+            <small><%= chat.latestMessage ? (chat.latestMessage.sender._id.toString() === currentUser._id.toString() ? 'You: ' : chat.latestMessage.sender.name + ': ') : '' %><%= chat.latestMessage ? chat.latestMessage.content : '' %></small>
+          </div>
+        </div>
+    <% } else { %>
+      <p>No chats available.</p>
+    <% } %>
+  </div>
+</div>
+
+<script>
+  function openChat(chatId) {
+    window.location.href = `/api/messages/${chatId}`;
+  }
+</script>
+
+<style>
+  .container {
+    margin: 20px;
+  }
+  .chats {
+    display: flex;
+    flex-direction: column;
+  }
+  .chat-card {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    cursor: pointer;
+    width: 100%;
+  }
+  .chat-card img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  .chat-info {
+    display: flex;
+    flex-direction: column;
+  }
+  .chat-info h4 {
+    margin: 0;
+  }
+  .chat-info p {
+    margin: 0;
+    color: gray;
+  }
+  .chat-info small {
+    color: darkgray;
+  }
+</style>
